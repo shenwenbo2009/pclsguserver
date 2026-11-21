@@ -198,8 +198,8 @@ docker-compose up -d
 ### systemd
 
 ```bash
-scp pclsguserver root@server:/opt/pclsguserver/
-scp deploy/pclsguserver.service root@server:/etc/systemd/system/
+scp pclsguserver root@<your-domain>:/opt/pclsguserver/
+scp deploy/pclsguserver.service root@<your-domain>:/etc/systemd/system/
 systemctl enable --now pclsguserver
 ```
 

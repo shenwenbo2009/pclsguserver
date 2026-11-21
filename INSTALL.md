@@ -272,12 +272,12 @@ CREATE DATABASE pclsgu;
 
 ```bash
 # 1. 构建并上传
-./deploy/deploy.sh root@your-server /opt/pclsguserver
+./deploy/deploy.sh root@<your-domain> /opt/pclsguserver
 
 # 2. 或手动部署
-scp pclsguserver-linux root@server:/opt/pclsguserver/
-scp config.yaml root@server:/opt/pclsguserver/config.yaml
-scp deploy/pclsguserver.service root@server:/etc/systemd/system/
+scp pclsguserver-linux root@<your-domain>:/opt/pclsguserver/
+scp config.yaml root@<your-domain>:/opt/pclsguserver/config.yaml
+scp deploy/pclsguserver.service root@<your-domain>:/etc/systemd/system/
 
 # 3. 启动服务
 systemctl daemon-reload
@@ -319,8 +319,8 @@ Nginx 配置特性：
 ```bash
 # 1. 准备 SSL 证书
 mkdir -p deploy/certs
-cp your-server.crt deploy/certs/server.crt
-cp your-server.key deploy/certs/server.key
+cp <your-domain>.crt deploy/certs/server.crt
+cp <your-domain>.key deploy/certs/server.key
 
 # 2. 修改 config.yaml 中的安全配置
 # - jwt.secret: 使用随机密钥
