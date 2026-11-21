@@ -7,6 +7,7 @@ import (
 	"pclsguserver/internal/model"
 	"pclsguserver/internal/repo"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -31,6 +32,7 @@ type Record struct {
 
 func (s *Service) Record(tx *gorm.DB, r Record) error {
 	log := &model.AuditLog{
+		ID:         uuid.NewString(),
 		Operator:   r.Operator,
 		Action:     r.Action,
 		TargetType: r.TargetType,
