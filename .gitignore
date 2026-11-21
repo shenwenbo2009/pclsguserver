@@ -1,0 +1,47 @@
+# 构建产物 / Binaries
+*.exe
+*.exe~
+pclsguserver
+pclsguserver-linux
+pclsgGuserver
+
+# 前端依赖 / Node modules
+frontend/*/node_modules/
+node_modules/
+
+# 前端构建输出 / Frontend build output
+frontend/*/dist/
+
+# 运行时数据 / Runtime data
+data/
+logs/
+
+# 配置文件（含密钥）/ Config with secrets
+config.yaml
+.initialized
+
+# 数据库文件 / Database files
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Go 测试覆盖率 / Go test coverage
+*.out
+coverage.txt
+
+# 临时文件 / Temp
+*.tmp
+*.bak

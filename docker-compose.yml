@@ -1,0 +1,39 @@
+services:
+  app:
+    build: .
+    container_name: pclsguserver
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config.yaml:/app/config.yaml:ro
+    environment:
+      - PCL_JWT_SECRET=change-me
+      - PCL_ADMIN_SUPERUSERNAME=admin
+      - PCL_ADMIN_SUPERPASSWORD=admin123
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - pclsgu-net
+  nginx:
+    image: nginx:alpine
+    container_name: pclsguserver-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./deploy/certs:/etc/nginx/certs:ro
+    depends_on:
+      - app
+    networks:
+      - pclsgu-net
+networks:
+  pclsgu-net:
+    driver: bridge

@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  dataDir: ./data
+  readTimeout: 30s
+  writeTimeout: 30s
+
+db:
+  driver: sqlite
+  dsn: ./data/meta.db
+  # MySQL/MariaDB 示例:
+  # driver: mysql
+  # dsn: root:password@tcp(127.0.0.1:3306)/pclsgu?charset=utf8mb4&parseTime=True&loc=Local
+  # PostgreSQL 示例:
+  # driver: postgres
+  # dsn: host=localhost user=postgres dbname=pclsgu sslmode=disable
+
+storage:
+  driver: fs
+  path: ./data
+  s3Bucket: ""
+  s3Region: ""
+  s3Endpoint: ""
+
+jwt:
+  secret: change-me-in-production
+  accessTtl: 2h
+  refreshTtl: 168h
+
+rateLimit:
+  loginThreshold: 5
+  loginWindow: 5m
+  globalRps: 100
+  downloadRps: 50
+
+audit:
+  retentionDays: 180
+  siemEnabled: false
+  siemWebhook: ""
+
+index:
+  rebuildInterval: 5m
+  formatVersion: 1
+  degradePolicy: db
+
+metrics:
+  aggregateInterval: 5m
+
+admin:
+  superUsername: admin
+  superPassword: admin123

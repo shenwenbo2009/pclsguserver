@@ -1,0 +1,9 @@
+node_modules/
+frontend/*/node_modules/
+frontend/*/dist/
+*.exe
+*.db
+data/
+logs/
+.git/
+.codeartsdoer/
