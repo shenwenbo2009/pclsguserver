@@ -10,7 +10,7 @@ type SoftwareVersion struct {
 	Checksum      string         `gorm:"column:checksum" json:"checksum"`
 	ReleaseNote   string         `gorm:"column:releaseNote" json:"releaseNote"`
 	PublishedAt   *time.Time     `gorm:"column:publishedAt" json:"publishedAt"`
-	Status        SoftwareStatus `gorm:"column:status;index:idx_sw_status,priority:2" json:"status"`
+	Status        SoftwareStatus `gorm:"column:status;type:varchar(20);index:idx_sw_status,priority:2" json:"status"`
 	Size          int64          `gorm:"column:size" json:"size"`
 	DownloadCount int64          `gorm:"column:downloadCount" json:"downloadCount"`
 	CreatedAt     time.Time      `gorm:"column:createdAt" json:"createdAt"`

@@ -12,7 +12,7 @@ type Plugin struct {
 	Description   string       `gorm:"column:description;type:text" json:"description"`
 	DownloadUrl   string       `gorm:"column:downloadUrl" json:"downloadUrl"`
 	Checksum      string       `gorm:"column:checksum" json:"checksum"`
-	Status        PluginStatus `gorm:"column:status;index:idx_plugin_status" json:"status"`
+	Status        PluginStatus `gorm:"column:status;type:varchar(20);index:idx_plugin_status" json:"status"`
 	PublishedAt   *time.Time   `gorm:"column:publishedAt" json:"publishedAt"`
 	Size          int64        `gorm:"column:size" json:"size"`
 	DownloadCount int64        `gorm:"column:downloadCount" json:"downloadCount"`

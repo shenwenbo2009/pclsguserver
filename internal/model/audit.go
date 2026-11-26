@@ -5,7 +5,7 @@ import "time"
 type AuditLog struct {
 	ID         string          `gorm:"column:id;primaryKey" json:"id"`
 	Operator   string          `gorm:"column:operator;type:varchar(255);index:idx_audit_operator,priority:2" json:"operator"`
-	Action     AuditAction     `gorm:"column:action;index:idx_audit_action,priority:2" json:"action"`
+	Action     AuditAction     `gorm:"column:action;type:varchar(50);index:idx_audit_action,priority:2" json:"action"`
 	TargetType AuditTargetType `gorm:"column:targetType" json:"targetType"`
 	TargetID   string          `gorm:"column:targetId" json:"targetId"`
 	Result     AuditResult     `gorm:"column:result" json:"result"`

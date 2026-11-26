@@ -15,11 +15,11 @@ func (MetricsEventRaw) TableName() string { return "metrics_event_raw" }
 
 type MetricsEvent struct {
 	ID                string           `gorm:"column:id;primaryKey" json:"id"`
-	Dimension         MetricsDimension `gorm:"column:dimension;uniqueIndex:idx_metrics_agg" json:"dimension"`
+	Dimension         MetricsDimension `gorm:"column:dimension;type:varchar(50);uniqueIndex:idx_metrics_agg" json:"dimension"`
 	SubjectKey        string           `gorm:"column:subjectKey;type:varchar(255);uniqueIndex:idx_metrics_agg,priority:2" json:"subjectKey"`
 	Count             int64            `gorm:"column:count" json:"count"`
 	UniqueClientCount int              `gorm:"column:uniqueClientCount" json:"uniqueClientCount"`
-	Granularity       Granularity      `gorm:"column:granularity;uniqueIndex:idx_metrics_agg,priority:3" json:"granularity"`
+	Granularity       Granularity      `gorm:"column:granularity;type:varchar(20);uniqueIndex:idx_metrics_agg,priority:3" json:"granularity"`
 	BucketStart       time.Time        `gorm:"column:bucketStart;uniqueIndex:idx_metrics_agg,priority:4" json:"bucketStart"`
 	BucketEnd         time.Time        `gorm:"column:bucketEnd" json:"bucketEnd"`
 }
