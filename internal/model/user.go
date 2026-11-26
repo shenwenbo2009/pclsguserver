@@ -4,7 +4,7 @@ import "time"
 
 type AdminUser struct {
 	ID           string        `gorm:"column:id;primaryKey" json:"id"`
-	Username     string        `gorm:"column:username;uniqueIndex:idx_user_username" json:"username"`
+	Username     string        `gorm:"column:username;type:varchar(50);uniqueIndex:idx_user_username" json:"username"`
 	PasswordHash string        `gorm:"column:passwordHash" json:"-"`
 	Salt         string        `gorm:"column:salt" json:"-"`
 	Status       AccountStatus `gorm:"column:status" json:"status"`
@@ -19,7 +19,7 @@ func (AdminUser) TableName() string { return "admin_users" }
 
 type Role struct {
 	ID          string   `gorm:"column:id;primaryKey" json:"id"`
-	Name        string   `gorm:"column:name;uniqueIndex:idx_role_name" json:"name"`
+	Name        string   `gorm:"column:name;type:varchar(50);uniqueIndex:idx_role_name" json:"name"`
 	Permissions []string `gorm:"column:permissions;type:text;serializer:json" json:"permissions"`
 	Builtin     bool     `gorm:"column:builtin" json:"builtin"`
 	Description string   `gorm:"column:description;type:text" json:"description"`
