@@ -4,10 +4,10 @@ import "time"
 
 type Plugin struct {
 	ID            string       `gorm:"column:id;primaryKey" json:"id"`
-	Name          string       `gorm:"column:name;index:idx_plugin_name" json:"name"`
+	Name          string       `gorm:"column:name;type:varchar(255);index:idx_plugin_name" json:"name"`
 	Version       string       `gorm:"column:version" json:"version"`
 	Author        string       `gorm:"column:author" json:"author"`
-	Category      string       `gorm:"column:category;index:idx_plugin_category" json:"category"`
+	Category      string       `gorm:"column:category;type:varchar(100);index:idx_plugin_category" json:"category"`
 	Keywords      []string     `gorm:"column:keywords;type:text;serializer:json" json:"keywords"`
 	Description   string       `gorm:"column:description;type:text" json:"description"`
 	DownloadUrl   string       `gorm:"column:downloadUrl" json:"downloadUrl"`
@@ -26,7 +26,7 @@ func (Plugin) TableName() string { return "plugins" }
 
 type ReviewRecord struct {
 	ID         string           `gorm:"column:id;primaryKey" json:"id"`
-	PluginID   string           `gorm:"column:pluginId;index:idx_review_plugin" json:"pluginId"`
+	PluginID   string           `gorm:"column:pluginId;type:varchar(255);index:idx_review_plugin" json:"pluginId"`
 	Reviewer   string           `gorm:"column:reviewer" json:"reviewer"`
 	Conclusion ReviewConclusion `gorm:"column:conclusion" json:"conclusion"`
 	Reason     string           `gorm:"column:reason;type:text" json:"reason"`

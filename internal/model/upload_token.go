@@ -4,7 +4,7 @@ import "time"
 
 type UploadToken struct {
 	ID               string            `gorm:"column:id;primaryKey" json:"id"`
-	TokenHash        string            `gorm:"column:tokenHash;uniqueIndex" json:"-"`
+	TokenHash        string            `gorm:"column:tokenHash;type:varchar(255);uniqueIndex" json:"-"`
 	Salt             string            `gorm:"column:salt" json:"-"`
 	Name             string            `gorm:"column:name" json:"name"`
 	UploaderIdentity string            `gorm:"column:uploaderIdentity" json:"uploaderIdentity"`

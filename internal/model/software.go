@@ -4,7 +4,7 @@ import "time"
 
 type SoftwareVersion struct {
 	ID            string         `gorm:"column:id;primaryKey" json:"id"`
-	SwCode        string         `gorm:"column:swCode;index:idx_sw_code" json:"swCode"`
+	SwCode        string         `gorm:"column:swCode;type:varchar(255);index:idx_sw_code" json:"swCode"`
 	Version       string         `gorm:"column:version" json:"version"`
 	SwUrl         string         `gorm:"column:swUrl" json:"swUrl"`
 	Checksum      string         `gorm:"column:checksum" json:"checksum"`
