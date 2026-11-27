@@ -174,15 +174,17 @@ func registerInitStaticRoutes(r *gin.Engine) {
 		path := c.Param("filepath")
 		if !hasExt(path) {
 			c.Request.URL.Path = "/index.html"
+		} else {
+			c.Request.URL.Path = path
 		}
 		c.Header("Cache-Control", "no-cache")
 		adminStatic.ServeHTTP(c.Writer, c.Request)
 	})
-	r.GET("/assets/*filepath", func(c *gin.Context) {
+	r.GET("/admin/assets/*filepath", func(c *gin.Context) {
+		c.Request.URL.Path = "/assets" + c.Param("filepath")
 		c.Header("Cache-Control", "no-cache")
 		adminStatic.ServeHTTP(c.Writer, c.Request)
 	})
-
 }
 
 func registerStaticRoutes(r *gin.Engine) {
@@ -202,11 +204,14 @@ func registerStaticRoutes(r *gin.Engine) {
 		path := c.Param("filepath")
 		if !hasExt(path) {
 			c.Request.URL.Path = "/index.html"
+		} else {
+			c.Request.URL.Path = path
 		}
 		c.Header("Cache-Control", "no-cache")
 		marketStatic.ServeHTTP(c.Writer, c.Request)
 	})
 	r.GET("/admin", func(c *gin.Context) {
+		c.Request.URL.Path = "/"
 		c.Header("Cache-Control", "no-cache")
 		adminStatic.ServeHTTP(c.Writer, c.Request)
 	})
@@ -214,6 +219,8 @@ func registerStaticRoutes(r *gin.Engine) {
 		path := c.Param("filepath")
 		if !hasExt(path) {
 			c.Request.URL.Path = "/index.html"
+		} else {
+			c.Request.URL.Path = path
 		}
 		c.Header("Cache-Control", "no-cache")
 		adminStatic.ServeHTTP(c.Writer, c.Request)
