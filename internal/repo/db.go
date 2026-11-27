@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
@@ -127,6 +128,7 @@ func seedSuperAdmin(db *gorm.DB, cfg *config.Config) error {
 		return fmt.Errorf("hash password: %w", err)
 	}
 	admin := model.AdminUser{
+		ID:           uuid.NewString(),
 		Username:     username,
 		PasswordHash: string(hashed),
 		Status:       model.AccountStatusActive,
