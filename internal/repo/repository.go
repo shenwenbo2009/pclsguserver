@@ -437,13 +437,13 @@ func NewConfigRepo(db *gorm.DB) *ConfigRepo { return &ConfigRepo{db: db} }
 
 func (r *ConfigRepo) GetAll() ([]model.SystemConfig, error) {
 	var cfgs []model.SystemConfig
-	err := r.db.Order("key ASC").Find(&cfgs).Error
+	err := r.db.Order("config_key ASC").Find(&cfgs).Error
 	return cfgs, err
 }
 
 func (r *ConfigRepo) GetByKey(key string) (*model.SystemConfig, error) {
 	var c model.SystemConfig
-	err := r.db.Where("key = ?", key).First(&c).Error
+	err := r.db.Where("config_key = ?", key).First(&c).Error
 	if err != nil {
 		return nil, err
 	}

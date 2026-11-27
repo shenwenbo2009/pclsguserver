@@ -151,7 +151,7 @@ func seedConfigs(db *gorm.DB) error {
 	}
 	for _, c := range configs {
 		var existing model.SystemConfig
-		if err := db.Where("key = ?", c.Key).First(&existing).Error; err == nil {
+		if err := db.Where("config_key = ?", c.Key).First(&existing).Error; err == nil {
 			continue
 		}
 		if err := db.Create(&c).Error; err != nil {
