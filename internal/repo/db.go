@@ -41,12 +41,26 @@ func InitDB(cfg *config.Config) (*gorm.DB, error) {
 		return nil, fmt.Errorf("open db: %w", err)
 	}
 	if err := Migrate(db); err != nil {
+		dropAllTables(db)
 		return nil, fmt.Errorf("migrate: %w", err)
 	}
 	if err := Seed(db, cfg); err != nil {
+		dropAllTables(db)
 		return nil, fmt.Errorf("seed: %w", err)
 	}
 	return db, nil
+}
+
+func dropAllTables(db *gorm.DB) {
+	tables := []string{
+		"software_versions", "plugins", "review_records",
+		"admin_users", "roles", "user_roles",
+		"audit_logs", "metrics_event_raw", "metrics_events",
+		"system_configs", "upload_tokens", "file_records",
+	}
+	for _, t := range tables {
+		db.Exec("DROP TABLE IF EXISTS " + t)
+	}
 }
 
 func Migrate(db *gorm.DB) error {

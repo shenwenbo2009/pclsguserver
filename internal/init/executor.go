@@ -70,20 +70,10 @@ func (e *InitExecutor) Execute(cfg InitConfig) error {
 		return fmt.Errorf("create data dir: %w", err)
 	}
 
-	db, err := repo.InitDB(c)
+	_, err = repo.InitDB(c)
 	if err != nil {
 		os.Remove(e.configPath)
 		return fmt.Errorf("init db: %w", err)
-	}
-
-	if err := repo.Migrate(db); err != nil {
-		os.Remove(e.configPath)
-		return fmt.Errorf("migrate: %w", err)
-	}
-
-	if err := repo.Seed(db, c); err != nil {
-		os.Remove(e.configPath)
-		return fmt.Errorf("seed: %w", err)
 	}
 
 	marker := InitMarker{
